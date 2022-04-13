@@ -1,0 +1,16 @@
+sequelize model:create --name Region --attributes nombre:string,larga:string
+sequelize model:create --name Provincia --attributes nombre:string
+sequelize model:create --name Comuna --attributes nombre:string
+
+sequelize model:create --name TipoEstacion --attributes nombre:string
+sequelize model:create --name Estado --attributes nombre:string
+sequelize model:create --name Network --attributes nombre:string
+sequelize model:create --name Tipo --attributes nombre:string
+sequelize model:create --name Canal --attributes nombre:string
+
+sequelize model:create --name Estacion --attributes codigo:string,nombre:string,latitud:double,longitud:double,altura:double
+
+
+
+
+npm install -g sequelize-cli
