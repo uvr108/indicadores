@@ -1,27 +1,25 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Estado extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      Estado.hasMany(models.Estacion, {
-        foreignKey: 'estadoId',
-      });
-  
-    }
-  }
-  Estado.init({
-    nombre: DataTypes.STRING
+  const Estado = sequelize.define('Estado', {
+    nombre:{
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    } 
   }, {
     sequelize,
-    modelName: 'Estado',
+    freezeTableName: true,
+    tableName: 'Estado',
   });
+  Estado.associate = function(models) {
+ 
+    Estado.hasMany(models.Estacion, {
+      foreignKey: 'estadoId',
+    });
+  };
+  
   return Estado;
+
 };

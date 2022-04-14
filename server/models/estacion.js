@@ -1,43 +1,77 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Estacion extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      Estacion.belongsTo(models.Canal, {
-        foreignKey: 'canalId',
-      });
-      Estacion.belongsTo(models.Region, {
-        foreignKey: 'regionId',
-      });
-      Estacion.belongsTo(models.Estado, {
-        foreignKey: 'estadoId',
-      });
-      Estacion.belongsTo(models.TipoEstacion, {
-        foreignKey: 'tipoestacionId',
-      });
-      Estacion.belongsTo(models.Network, {
-        foreignKey: 'networkId',
-      });
-  
-    }
-  }
-  Estacion.init({
-    codigo: DataTypes.STRING,
-    nombre: DataTypes.STRING,
-    latitud: DataTypes.DOUBLE,
-    longitud: DataTypes.DOUBLE,
-    altura: DataTypes.DOUBLE
+  const Estacion = sequelize.define('Estacion', {
+    codigo: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    },
+    latitud: {
+      type: DataTypes.DOUBLE,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    },
+    longitud: {
+      type: DataTypes.DOUBLE,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    },
+    altura: {
+      type: DataTypes.DOUBLE,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    },
+    /*
+    referencia: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    },
+    */
   }, {
     sequelize,
-    modelName: 'Estacion',
+    freezeTableName: true,
+    tableName: 'Estacion',
   });
+  Estacion.associate = function(models) {
+    
+    Estacion.belongsTo(models.Canal, {
+      foreignKey: 'canalId',
+    });
+
+    Estacion.belongsTo(models.Tipo, {
+      foreignKey: 'tipoId',
+    });
+
+    Estacion.belongsTo(models.Region, {
+      foreignKey: 'regionId',
+    });
+    Estacion.belongsTo(models.Estado, {
+      foreignKey: 'estadoId',
+    });
+    Estacion.belongsTo(models.TipoEstacion, {
+      foreignKey: 'tipoestacionId',
+    });
+    Estacion.belongsTo(models.Network, {
+      foreignKey: 'networkId',
+    });
+  };
   return Estacion;
 };

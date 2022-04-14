@@ -1,28 +1,32 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Network extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      Network.hasMany(models.Estacion, {
-        foreignKey: 'networkId',
-      });
-  
-    }
-  }
-  Network.init({
-    nombre: DataTypes.STRING,
-    descripcion: DataTypes.STRING
+  const Network = sequelize.define('Network', {
+    nombre:{
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    } ,
+    descripcion:{
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your descripcion'
+      }
+    } ,
   }, {
     sequelize,
-    modelName: 'Network',
+    freezeTableName: true,
+    tableName: 'Network',
   });
+  Network.associate = function(models) {
+ 
+    Network.hasMany(models.Estacion, {
+      foreignKey: 'networkId',
+    });
+  };
+  
   return Network;
+
 };
