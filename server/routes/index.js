@@ -49,11 +49,11 @@ export default (app) => {
    app.post('/api/canal', Canales.create); // API route for user to signup
    app.put('/api/canal/:canalId', Canales.modify); // API route for user to signup
 
-   app.get('/api/estacion', Estaciones.list); // API route for user to signup
+   // app.get('/api/estacion', Estaciones.list); // API route for user to signup
    app.post('/api/estacion/:comunaId/:estadoId/:networkId/:tipoestacionId', Estaciones.create); // API route for user to signup
    app.put('/api/estacion/:estacionId', Estaciones.modify); // API route for user to signup
    app.get('/api/estacion/fk/:comunaId', Estaciones.getByFk); // API route for user to signup
-   app.get('/api/estacion/latitud/:lat_ini/:lat_fin', Estaciones.latitud); // API route for user to signup
+   app.get('/api/estacion/:lat_ini/:lat_fin/:regionId/:csn/:gnss/:rna', Estaciones.list); // API route for user to signup
 
    
 };

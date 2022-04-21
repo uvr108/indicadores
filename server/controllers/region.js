@@ -7,7 +7,7 @@ class Regiones {
 
     static list(req, res) {
               return Region 
-                .findAll()
+                .findAll({ order: [['id','ASC']], })
                 .then(region => res.status(200).send(region));
     }
     static create(req, res) {
