@@ -14,3 +14,5 @@ sequelize model:create --name Estacion --attributes codigo:string,nombre:string,
 
 
 npm install -g sequelize-cli
+
+pm2 start ./app.js --interpreter ./node_modules/babel-cli/bin/babel-node.js

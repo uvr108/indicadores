@@ -34,7 +34,7 @@ class Estaciones {
          
          var buscar =  { 
              latitud : {[Op.between]: [lat_fin, lat_ini] },
-             networkId: { [Op.in]: [1,3,11,14,15] }, 
+             networkId: { [Op.in]: [1,3,11,14,15,17] }, 
              [Op.not]: { estadoId: [5,10] }, 
              tipoId: {[Op.in]: tipo},
              tipoestacionId:{ [Op.in]: [1,2,5,6,8,10,11]} 
